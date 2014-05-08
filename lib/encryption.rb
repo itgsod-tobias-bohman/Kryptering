@@ -1,9 +1,7 @@
-def encrypt(text)
-  return 'No text found' if text == nil
+def encrypt(text, offset)
 
   text = text.upcase
   text_list = []
-  offset = 3
   letter_index = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   etext = ""
 
@@ -24,6 +22,8 @@ def encrypt(text)
         temp = letter_index.index(text_list[i]) + offset
         if temp > letter_index.length
           temp = temp - letter_index.length
+        elsif temp < 0
+          temp = letter_index.length + temp
         end
         new_letter = letter_index[temp]
       end
@@ -37,4 +37,4 @@ def encrypt(text)
   puts etext
 end
 
-encrypt("hello")
+encrypt("hello", 1)
