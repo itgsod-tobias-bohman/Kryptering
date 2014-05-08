@@ -1,9 +1,11 @@
 def encrypt(text, offset)
+  raise ArgumentError, 'String must not be empty' if text == ''
+  #raise ArgumentError, 'Offset must not be zero' if offset == 0
 
   text = text.upcase
   text_list = []
-  letter_index = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-  etext = ""
+  letter_index = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  etext = ''
 
   i = 0
   while i < text.length
@@ -13,28 +15,27 @@ def encrypt(text, offset)
   p text_list
 
   i = 0
-  while i < text_list.length
-    new_letter = ""
+  while i < text_list.size
+    new_letter = ''
     letter_index.each { |x|
       if text_list[i] == nil
         return nil
       elsif text_list[i] == x
         temp = letter_index.index(text_list[i]) + offset
-        if temp > letter_index.length
-          temp = temp - letter_index.length
-        elsif temp < 0
-          temp = letter_index.length + temp
+        if temp > letter_index.size
+          temp = temp - letter_index.size
         end
         new_letter = letter_index[temp]
+        p new_letter
       end
     }
-    if new_letter == ""
+    if new_letter == ''
       new_letter = text_list[i]
     end
-    etext += new_letter
+    etext += new_letter if new_letter != nil
     i += 1
   end
-  puts etext
+  return etext
 end
 
-encrypt("hello", 1)
+puts encrypt('the quick brown fox jumps over the lazy dog', 0)
