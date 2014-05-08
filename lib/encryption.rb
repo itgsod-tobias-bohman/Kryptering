@@ -1,6 +1,6 @@
 def encrypt(text, offset)
   raise ArgumentError, 'String must not be empty' if text == ''
-  #raise ArgumentError, 'Offset must not be zero' if offset == 0
+  raise ArgumentError, 'Offset must not be zero' if offset == 0
 
   text = text.upcase
   text_list = []
@@ -12,7 +12,6 @@ def encrypt(text, offset)
     text_list << text[i]
     i += 1
   end
-  p text_list
 
   i = 0
   while i < text_list.size
@@ -22,11 +21,10 @@ def encrypt(text, offset)
         return nil
       elsif text_list[i] == x
         temp = letter_index.index(text_list[i]) + offset
-        if temp > letter_index.size
+        if temp > letter_index.size - 1
           temp = temp - letter_index.size
         end
         new_letter = letter_index[temp]
-        p new_letter
       end
     }
     if new_letter == ''
@@ -37,5 +35,3 @@ def encrypt(text, offset)
   end
   return etext
 end
-
-puts encrypt('the quick brown fox jumps over the lazy dog', 0)
