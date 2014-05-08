@@ -1,2 +1,9 @@
 .idea/**
 Gemfile.lock
+lib/.idea/.name
+
+lib/.idea/encodings.xml
+
+lib/.idea/lib.iml
+
+*.xml
