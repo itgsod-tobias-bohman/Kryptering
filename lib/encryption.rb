@@ -1,26 +1,26 @@
-def encrypt(text, offset)
-  raise ArgumentError, 'String must not be empty' if text == ''
+def encrypt(input_text, offset)
+  raise ArgumentError, 'String must not be empty' if input_text == ''
   raise ArgumentError, 'Offset must not be zero' if offset == 0
 
-  text = text.upcase
+  input_text = input_text.upcase
   text_list = []
   letter_index = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-  etext = ''
+  encrypted_text = ''
 
-  i = 0
-  while i < text.length
-    text_list << text[i]
-    i += 1
+  counter = 0
+  while counter < input_text.length
+    text_list << input_text[counter]
+    counter += 1
   end
 
-  i = 0
-  while i < text_list.size
+  counter = 0
+  while counter < text_list.size
     new_letter = ''
     letter_index.each { |x|
-      if text_list[i] == nil
+      if text_list[counter] == nil
         return nil
-      elsif text_list[i] == x
-        temp = letter_index.index(text_list[i]) + offset
+      elsif text_list[counter] == x
+        temp = letter_index.index(text_list[counter]) + offset
         if temp > letter_index.size - 1
           temp = temp - letter_index.size
         end
@@ -28,17 +28,17 @@ def encrypt(text, offset)
       end
     }
     if new_letter == ''
-      new_letter = text_list[i]
+      new_letter = text_list[counter]
     end
-    etext += new_letter if new_letter != nil
-    i += 1
+    encrypted_text += new_letter if new_letter != nil
+    counter += 1
   end
-  return etext
+  return encrypted_text
 end
 
-def decrypt(text, offset)
+def decrypt(input_text, offset)
   offset *= -1
 
-  detext = encrypt(text, offset).downcase
-  return detext
+  decrypted_text = encrypt(input_text, offset).downcase
+  return decrypted_text
 end
