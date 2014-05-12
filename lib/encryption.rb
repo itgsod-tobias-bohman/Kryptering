@@ -35,3 +35,10 @@ def encrypt(text, offset)
   end
   return etext
 end
+
+def decrypt(text, offset)
+  offset *= -1
+
+  detext = encrypt(text, offset).downcase
+  return detext
+end
