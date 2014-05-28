@@ -1,6 +1,17 @@
-# ENCRYPT is a function which moves characters in a text using an offset according to their position in the alphabet
-# also make the letters capitalized
-# Ex: encrypt("abc", 3) => "DEF"
+# Public: Encrypts a string using an offset.
+#
+# input_text  - The string to be encrypted.
+#
+# offset  - Integer to define how much text will be encrypted.
+#
+# Examples
+#
+#   encrypt('hello', 3)
+#   # => 'KHOOR'
+#
+# Returns the input_text encrypted.
+# Raises error if input_text = ''
+# Raises error if offset = 0
 def encrypt(input_text, offset)
   # Error messages for: empty strings & offset == 0
   raise ArgumentError, 'String must not be empty' if input_text == ''
@@ -9,10 +20,16 @@ def encrypt(input_text, offset)
   # Makes the input text uppercase letters only
   input_text = input_text.upcase
 
-  # Declaring variables
+  # Will hold all letters from input_text
   text_list = []
+
+  # Defines each letter with a number using index
   letter_index = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+  # The encrypted text goes here
   encrypted_text = ''
+
+  # Stopping infinite loops
   counter = 0
 
   # Sends each character in the input text in to their own element in an array(text_list)
