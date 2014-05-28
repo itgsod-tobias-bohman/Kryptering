@@ -84,9 +84,18 @@ def encrypt(input_text, offset)
   return encrypted_text
 end
 
-# DECRYPT is a function which decrypts a code that the function ENCRYPT has encrypted using input text and original offset key
-# also makes the text lowercase
-# Ex: decrypt("DEF", 3) => "abc"
+# Public: Decrypts encrypted text using original offset.
+#
+# input_text  - The string to be decrypted.
+#
+# offset  - Integer to define how much the text was encrypted.
+#
+# Examples
+#
+#   encrypt('KHOOR', 3)
+#   # => 'hello'
+#
+# Returns the input_text decrypted.
 def decrypt(input_text, offset)
 
   # Takes original offset and inverts it
