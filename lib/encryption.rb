@@ -13,7 +13,6 @@
 # Raises error if input_text = ''
 # Raises error if offset = 0
 def encrypt(input_text, offset)
-  # Error messages for: empty strings & offset == 0.
   raise ArgumentError, 'String must not be empty' if input_text == ''
   raise ArgumentError, 'Offset must not be zero' if offset == 0
 
