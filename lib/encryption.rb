@@ -19,57 +19,38 @@ def encrypt(input_text, offset)
   # Makes the input text uppercase letters only.
   input_text = input_text.upcase
 
-  # Will hold all letters from input_text.
-  text_list = []
-
   # Defines each letter with a number using index.
-  letter_index = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
   # The encrypted text goes here.
   encrypted_text = ''
-
-  # Stopping infinite loops.
-  counter = 0
-
-  # Sends each character in the input text in to their own element in an array(text_list).
-  while counter < input_text.length
-    text_list << input_text[counter]
-    counter += 1
-  end
 
   # Resets the counter.
   counter = 0
 
   # Goes through each character in the list.
-  while counter < text_list.size
+  while counter < input_text.length
     # Resets the new_letter.
     new_letter = ''
 
-    # Goes through the alphabet for comparison reasons.
-    letter_index.each { |x|
-
-      # Error message for: current element in array == nil.
-      raise ArgumentError, 'Element must not be nil' if text_list[counter] == nil
-
-      # Checks if current element in text_list is = to currently selected letter in the alphabet.
-      if text_list[counter] == x
-
+    if alphabet.index(input_text[counter]) == nil
+      new_letter = input_text[counter]
+    else
         # Declares a temporary variable to hold the new offset.
-        temp = letter_index.index(text_list[counter]) + offset
+        temp = alphabet.index(input_text[counter]) + offset
 
         # Makes sure that the offset for a new letter isn't a value that is bigger than the lenght of the alphabet.
-        if temp > letter_index.size - 1
-          temp = temp - letter_index.size
+        if temp > alphabet.size - 1
+          temp = temp - alphabet.size
         end
 
         # Declares which new letter whom is to be added to the encrypted text.
-        new_letter = letter_index[temp]
+        new_letter = alphabet[temp]
       end
-    }
 
     # Makes sure to keep spaces so the text don't get messy.
     if new_letter == ''
-      new_letter = text_list[counter]
+      new_letter = input_text[counter]
     end
 
     # Adds the new letter to the end of the encrypted text.
