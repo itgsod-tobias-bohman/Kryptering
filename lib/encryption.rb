@@ -22,24 +22,17 @@ def encrypt(input_text, offset)
   # Defines each letter with a number using index.
   alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-  # The encrypted text goes here.
   encrypted_text = ''
 
-  # Resets the counter.
-  counter = 0
+  input_text.each_char do |char|
 
-  # Goes through each character in the list.
-  while counter < input_text.length
-    # Resets the new_letter.
-    new_letter = ''
-
-    if alphabet.index(input_text[counter]) == nil
-      new_letter = input_text[counter]
+    if alphabet.index(char) == nil
+      new_letter = char
     else
         # Declares a temporary variable to hold the new offset.
-        temp = alphabet.index(input_text[counter]) + offset
+        temp = alphabet.index(char) + offset
 
-        # Makes sure that the offset for a new letter isn't a value that is bigger than the lenght of the alphabet.
+        # Makes sure that the offset for a new letter isn't a value that is bigger than the length of the alphabet.
         if temp > alphabet.size - 1
           temp = temp - alphabet.size
         end
@@ -47,17 +40,9 @@ def encrypt(input_text, offset)
         # Declares which new letter whom is to be added to the encrypted text.
         new_letter = alphabet[temp]
       end
-
-    # Makes sure to keep spaces so the text don't get messy.
-    if new_letter == ''
-      new_letter = input_text[counter]
-    end
-
     # Adds the new letter to the end of the encrypted text.
     encrypted_text += new_letter
 
-    # Increments the counter.
-    counter += 1
   end
 
   # Returns the encrypted text.
@@ -78,11 +63,8 @@ end
 # Returns the input_text decrypted.
 def decrypt(input_text, offset)
 
-  # Takes original offset and inverts it.
-  offset *= -1
-
   # Calls the encrypt function using the inverted offset to get the decrypted text, also makes the text lowercase.
-  decrypted_text = encrypt(input_text, offset).downcase
+  decrypted_text = encrypt(input_text, offset * -1).downcase
 
   # Returns the decrypted text.
   return decrypted_text
